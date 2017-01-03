@@ -27,6 +27,28 @@ markdown: kramdown
 theme: minima
 gems:
   - jekyll-feed
+
+
+# standard jekyll configuration
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "default"
+
+permalink: /:title
+highlighter: Pygments
 exclude:
-  - Gemfile
-  - Gemfile.lock
+- bin
+- config.rb
+- Gemfile
+- Gemfile.lock
+- gems
+- Procfile
+- Rakefile
+- README.md
+- script
+- vendor
