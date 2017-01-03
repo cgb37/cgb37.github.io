@@ -26,7 +26,11 @@ category: project
                     <div class="col-sm-6 col-md-8">
                         <div class="body">
                             <h3 class="title"> <a href="{{site.baseurl}}{{ post.url }}">{{post.title}}</a></h3>
-                            <p class="small mb-10"><i class="icon-calendar"></i> Feb, 2016 <i class="pl-10 icon-tag-1"></i> Web Design</p>
+                            <p class="small mb-10">
+                                {% for t in post.tags %}
+                                  <a href="{{ t.url }}">{{ t.tag }}</a>
+                                {% endfor %}
+                            </p>
                             <div class="separator-2"></div>
                             <p class="mb-10">{{ post.meta }}</p>
                             <p><a href="{{site.baseurl}}{{ post.url }}">Read More</a></p>
