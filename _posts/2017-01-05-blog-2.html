@@ -3,41 +3,11 @@ category: blog
 layout: blog/post
 title: Blog 2
 author: Charles Brown-Roberts
-meta: Description of Blog 2
 tags: Rails
-pubdate: 2017-01-05
+keywords: ruby on rails, rails, web development
+description: A ruby on rails blog post
+abstract: Description of Blog 2
 thumbnail: blog/images/
 jumbotron: blog/images/rubyonrails.jpg
+youtube:
 ---
-
-<div class="jumbotron my-jumbotron">
-    <img src="{{ site.baseurl }}/{{ page.jumbotron }}">
-</div>
-
-<div class="container">
-    <div class="row">
-
-        <div class="col-lg-3">
-            {% include profile.html %}
-            <div class="adsense-blog-post">
-                {% include adsense-blog-post.html %}
-            </div>
-        </div>
-
-        <div class="col-lg-9">
-            <article id="{{ page.id }}">
-                <a href="{{ page.url }}" rel="bookmark" title="{{ page.title }}">
-                    <h1>{{ page.title }}</h1>
-                    <span>{{ page.date }}</span>
-                </a>
-                <div class="article-metadata">
-                    <span>by {{ page.author }}</span>
-                </div>
-                <div class="article-body">
-
-                </div>
-            </article>
-
-        </div>
-    </div>
-</div> 
