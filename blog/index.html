@@ -2,13 +2,38 @@
 title: Blog
 layout: default
 category: blog
+jumbotron: blog/images/jumbotron-blog.jpg
 ---
 
-<ul>
-    {% for post in site.categories.blog limit:5 %}
-    <li>
-        <a href="{{site.baseurl}}{{ post.url }}">{{post.title}}</a>
-        <p>{{ post.meta }}</p>
-    </li>
-    {% endfor %}
-</ul>
+<div class="jumbotron my-jumbotron">
+    <img src="{{ site.baseurl }}/{{ page.jumbotron }}">
+</div>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-lg-3">
+            {% include profile.html %}
+            <div class="adsense-blog-post">
+                {% include adsense-blog-post.html %}
+            </div>
+        </div>
+
+        <div class="col-lg-9">
+            {% for page in site.categories.blog limit:10 %}
+            <article id="{{ page.id }}">
+                <a href="{{ page.url }}" rel="bookmark" title="{{ page.title }}">
+                    <h1>{{ page.title }}</h1>
+                    <span>{{ page.date }}</span>
+                </a>
+                <div class="article-metadata">
+                    <span>by {{ page.author }}</span>
+                </div>
+                <div class="article-abstract">
+
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</div>
