@@ -15,12 +15,12 @@ category: project
             </div>
         </div>
         <div class="col-md-10 col-md-offset-1">
-            {% for post in site.categories.project limit:10 %}
+            {% for post in site.categories.project limit:5 %}
             <div class="image-box style-3-b">
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
                         <div class="shadow bordered">
-                            <img src="{{site.baseurl}}/{{ post.thumbnail }}" alt="">
+                            <img class="img-responsive img-thumbnail" src="{{site.baseurl}}/{{ post.thumbnail }}" alt="">
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-8">
