@@ -48,7 +48,7 @@ youtube:
 
 <script type="application/ld+json">
 { "@context": "http://schema.org",
- "@type": "BlogPosting",
+ "@type": "Article",
  "headline": "{{ page.title }}",
  "alternativeHeadline": "",
  "image": "{{ site.baseurl }}/{{ page.thumbnail }}",
@@ -62,11 +62,6 @@ youtube:
  "datePublished": "{{ page.date }}",
  "dateCreated": "{{ page.date }}",
  "dateModified": "{{ page.date }}",
- "description": "{{ page.abstract }}",
- "articleBody": "{{ content }}",
-   "author": {
-    "@type": "Person",
-    "name": "{{ page.author }}"
-  }
+ "description": "{{ page.abstract }}"
  }
 </script>
