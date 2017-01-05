@@ -1,0 +1,38 @@
+---
+category: blog
+layout: blog/post
+title:
+author: Charles Brown-Roberts
+meta:
+tags:
+pubdate: 2017-
+thumbnail: blog/images/
+---
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-lg-3">
+            {% include profile.html %}
+            <div class="adsense-blog-post">
+                {% include adsense-blog-post.html %}
+            </div>
+        </div>
+
+        <div class="col-lg-9">
+            <article>
+                <a href="{{ post.url }}" rel="bookmark" title="{{ post.title }}">
+                    <h1>{{ post.title }}</h1>
+                    <span>{{ post.pubdate }}</span>
+                </a>
+                <div class="article-metadata">
+                    <span>by {{ post.author }}</span>
+                </div>
+                <div class="article-body">
+
+                </div>
+            </article>
+
+        </div>
+    </div>
+</div> 
