@@ -12,6 +12,11 @@ jumbotron:
 youtube:
 ---
 
+<div class="jumbotron my-jumbotron">
+    <img src="{{ site.baseurl }}/{{ page.jumbotron }}">
+</div>
+
+
 <div class="container">
     <div class="row">
 
@@ -39,4 +44,29 @@ youtube:
 
         </div>
     </div>
-</div> 
+</div>
+
+<script type="application/ld+json">
+{ "@context": "http://schema.org",
+ "@type": "BlogPosting",
+ "headline": "{{ page.title }}",
+ "alternativeHeadline": "",
+ "image": "{{ site.baseurl }}/{{ page.thumbnail }}",
+ "award": "",
+ "editor": "{{ page.author }}",
+ "genre": "{{ page.category }}",
+ "keywords": "{{ page.keywords }}",
+ "wordcount": "",
+ "publisher": "Charles Brown-Roberts",
+ "url": "{{ page.url }}",
+ "datePublished": "{{ page.date }}",
+ "dateCreated": "{{ page.date }}",
+ "dateModified": "{{ page.date }}",
+ "description": "{{ page.abstract }}",
+ "articleBody": "{{ content }}",
+   "author": {
+    "@type": "Person",
+    "name": "{{ page.author }}"
+  }
+ }
+</script>
