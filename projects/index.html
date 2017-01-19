@@ -37,7 +37,7 @@ jumbotron: projects/images/jumbotron.jpg
                         <div class="card-metadata">
                             <p>{{ post.meta }}</p>
                             <span>by {{ post.author }}</span>
-                            <span>{{ post.date }}</span>
+                            <span>{{ post.date | date_to_string }}</span>
                         </div>
                     </div>
                     <div class="card-action">
