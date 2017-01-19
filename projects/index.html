@@ -13,40 +13,42 @@ jumbotron: projects/images/jumbotron.jpg
     </div>
 
     <div class="container">
+
+
         <div class="row">
-
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center">
-                    <h2 class="title"><span class="text-muted">Recent</span> <span class="text-default">Projects</span></h2>
-                    <div class="separator"></div>
-                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit Illo quaerat <br> commodi excepturi dignissimos!</p>
-                    <br>
-                </div>
-            </div>
-
-            <div class="col-lg-3">
-                {% include profile.html %}
-                <div class="adsense-blog-post">
-                    {% include adsense-blog-post.html %}
-                </div>
-            </div>
-
-            <div class="col-lg-9">
-                {% for post in site.categories.project limit:10 %}
-                <article id="{{ post.id }}">
-                    <a href="{{ post.url }}" rel="bookmark" title="{{ post.title }}">
-                        <h1>{{ post.title }}</h1>
-                        <span>{{ post.date }}</span>
-                    </a>
-                    <div class="article-metadata">
-                        <span>by {{ post.author }}</span>
-                    </div>
-                    <div class="article-abstract">
-
-                    </div>
-                </article>
-                {% endfor %}
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <h2 class="title"><span class="text-muted">Recent</span> <span class="text-default">Projects</span></h2>
+                <div class="separator"></div>
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit Illo quaerat <br> commodi excepturi dignissimos!</p>
+                <br>
             </div>
         </div>
+
+
+        <div class="row">
+            {% for post in site.categories.project limit:10 %}
+            <div class="col-lg-6">
+                <div class="card" id="{{ post.id }}">
+                    <div class="card-image">
+                        <img src="{{site.baseurl}}/projects/images/portfolio-1.jpg">
+                        <span class="card-title">{{ post.title }}</span>
+                    </div>
+                    <div class="card-content">
+                        <p>I am a very simple card. I am good at containing small bits of information.
+                            I am convenient because I require little markup to use effectively.</p>
+                        <div class="article-metadata">
+                            <span>by {{ post.author }}</span>
+                            <span>{{ post.date }}</span>
+                        </div>
+
+                    </div>
+                    <div class="card-action">
+                        <a href="{{ post.url }}" rel="bookmark" title="{{ post.title }}">
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
     </div>
 </section>
