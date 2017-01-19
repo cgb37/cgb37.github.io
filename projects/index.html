@@ -30,12 +30,11 @@ jumbotron: projects/images/jumbotron.jpg
             <div class="col-lg-6">
                 <div class="card" id="{{ post.id }}">
                     <div class="card-image">
-                        <img src="{{site.baseurl}}/projects/images/portfolio-1.jpg">
+                        <img src="{{site.baseurl}}/projects/images/project-1.png">
                         <span class="card-title">{{ post.title }}</span>
                     </div>
                     <div class="card-content">
-                        <p>I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.</p>
+                        <p>{{ post.meta }}</p>
                         <div class="article-metadata">
                             <span>by {{ post.author }}</span>
                             <span>{{ post.date }}</span>
@@ -43,7 +42,7 @@ jumbotron: projects/images/jumbotron.jpg
 
                     </div>
                     <div class="card-action">
-                        <a href="{{ post.url }}" rel="bookmark" title="{{ post.title }}">
+                        <a href="{{ post.url }}" rel="bookmark" title="{{ post.title }}">Continue Reading</a>
                     </div>
                 </div>
             </div>
