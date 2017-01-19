@@ -2,7 +2,7 @@
 title: CGB37 Presentations
 layout: default
 category: presentation
-jumbotron: blog/images/jumbotron-blog.jpg
+jumbotron: presentations/images/jumbotron.png
 ---
 
 <section id="presentations" class="section pv-40 light-gray-bg">
@@ -22,7 +22,7 @@ jumbotron: blog/images/jumbotron-blog.jpg
             </div>
 
             <div class="col-lg-9">
-                {% for post in site.categories.blog limit:10 %}
+                {% for post in site.categories.presentation limit:10 %}
                 <article id="{{ post.id }}">
                     <a href="{{ post.url }}" rel="bookmark" title="{{ post.title }}">
                         <h1>{{ post.title }}</h1>
