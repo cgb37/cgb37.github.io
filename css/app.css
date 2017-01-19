@@ -23,22 +23,9 @@
 }
 
 @media only screen and (max-width: 421px) {
+
     .jumbotron-header {
-        position: absolute;
-        left: 50%;
-        top: 20%;
-        bottom: auto;
-        right: auto;
-        -webkit-transform: translateX(-50%) translateY(-50%);
-        -moz-transform: translateX(-50%) translateY(-50%);
-        -ms-transform: translateX(-50%) translateY(-50%);
-        -o-transform: translateX(-50%) translateY(-50%);
-        transform: translateX(-50%) translateY(-50%);
-        text-align: center;
-        width: 100%;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        color: #fff;
-        font-weight: bold;
+        top: 10%;
     }
 }
 
