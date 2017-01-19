@@ -7,23 +7,18 @@ jumbotron: projects/images/jumbotron.jpg
 
 <section id="projects" class="section pv-40 light-gray-bg">
 
-
     <div class="jumbotron my-jumbotron">
         <img src="{{ site.baseurl }}/{{ page.jumbotron }}">
     </div>
 
     <div class="container">
 
-
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-center">
                 <h2 class="title"><span class="text-muted">Recent</span> <span class="text-default">Projects</span></h2>
                 <div class="separator"></div>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit Illo quaerat <br> commodi excepturi dignissimos!</p>
-                <br>
             </div>
         </div>
-
 
         <div class="row">
             {% for post in site.categories.project limit:10 %}
