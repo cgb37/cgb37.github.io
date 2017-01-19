@@ -30,16 +30,15 @@ jumbotron: projects/images/jumbotron.jpg
             <div class="col-lg-6">
                 <div class="card" id="{{ post.id }}">
                     <div class="card-image">
-                        <img src="{{site.baseurl}}/projects/images/project-1.png">
-                        <span class="card-title">{{ post.title }}</span>
+                        <img src="{{site.baseurl}}/{{ post.card }}">
                     </div>
                     <div class="card-content">
-                        <p>{{ post.meta }}</p>
-                        <div class="article-metadata">
+                        <span class="card-title">{{ post.title }}</span>
+                        <div class="card-metadata">
+                            <p>{{ post.meta }}</p>
                             <span>by {{ post.author }}</span>
                             <span>{{ post.date }}</span>
                         </div>
-
                     </div>
                     <div class="card-action">
                         <a href="{{ post.url }}" rel="bookmark" title="{{ post.title }}">Continue Reading</a>
