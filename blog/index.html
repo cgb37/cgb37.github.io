@@ -21,17 +21,20 @@ jumbotron: blog/images/jumbotron-blog.jpg
     </div>
 
     <div class="row">
-        {% for post in site.categories.project limit:12 %}
+        {% for post in site.categories.blog limit:12 %}
         <div class="col-lg-4">
             <div class="card" id="{{ post.id }}">
                 <div class="card-image">
-                    <img src="{{site.baseurl}}/{{ post.card }}">
+                    <a href="{{ post.url }}" rel="bookmark" title="{{ post.title }}">
+                        <img src="{{site.baseurl}}/{{ post.card }}">
+                    </a>
                 </div>
                 <div class="card-content">
-                    <span class="card-title">{{ post.title }}</span>
+                    <span class="card-title">
+                        <a href="{{ post.url }}" rel="bookmark" title="{{ post.title }}">{{ post.title }}</a>
+                    </span>
                     <div class="card-metadata">
-                        <p>{{ post.meta }}</p>
-                        <span>by {{ post.author }}</span>
+                        <span>by <a href="{{ post.author_url }}">{{ post.author }}</a></span><br>
                         <span>{{ post.date | date_to_string }}</span>
                     </div>
                 </div>
