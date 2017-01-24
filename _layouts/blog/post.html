@@ -32,7 +32,7 @@ youtube:
             <article id="{{ page.id }}">
                 <a href="{{ page.url }}" rel="bookmark" title="{{ page.title }}">
                     <h1>{{ page.title }}</h1>
-                    <span>{{ page.date }}</span>
+                    <span>{{ page.date | date_to_string }}</span>
                 </a>
                 <div class="article-metadata">
                     <span>by {{ page.author }}</span>
