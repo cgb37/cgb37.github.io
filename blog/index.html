@@ -14,10 +14,8 @@ jumbotron: blog/images/jumbotron-blog.jpg
         {% for page in site.categories.blog limit:12 %}
         <div class="col-lg-4">
             <article id="{{ page.id }}">
-                <a href="{{ page.url }}" rel="bookmark" title="{{ page.title }}">
-                    <h1>{{ page.title }}</h1>
-                    <span>{{ page.date }}</span>
-                </a>
+                <h1><a href="{{ page.url }}" rel="bookmark" title="{{ page.title }}">{{ page.title }}</a></h1>
+                <span>{{ page.date | date_to_string }}</span>
                 <div class="article-metadata">
                     <span>by <a href="http://charlesbrownroberts.com">{{ page.author }}</a></span>
                 </div>
