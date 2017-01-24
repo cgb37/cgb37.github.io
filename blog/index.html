@@ -10,22 +10,42 @@ jumbotron: blog/images/jumbotron-blog.jpg
 </div>
 
 <div class="container">
-    <div class="row">
-        {% for page in site.categories.blog limit:12 %}
-        <div class="col-lg-4">
-            <article id="{{ page.id }}">
-                <h1><a href="{{ page.url }}" rel="bookmark" title="{{ page.title }}">{{ page.title }}</a></h1>
-                <span>{{ page.date | date_to_string }}</span>
-                <div class="article-metadata">
-                    <span>by <a href="http://charlesbrownroberts.com">{{ page.author }}</a></span>
-                </div>
-                <div class="article-abstract">
 
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 text-center">
+            <h2 class="title"><span class="text-muted">Recent</span> <span class="text-default">Posts</span></h2>
+            <div class="separator"></div>
+            <p class="lead"></p>
+            <br>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for post in site.categories.project limit:12 %}
+        <div class="col-lg-4">
+            <div class="card" id="{{ post.id }}">
+                <div class="card-image">
+                    <img src="{{site.baseurl}}/{{ post.card }}">
                 </div>
-            </article>
+                <div class="card-content">
+                    <span class="card-title">{{ post.title }}</span>
+                    <div class="card-metadata">
+                        <p>{{ post.meta }}</p>
+                        <span>by {{ post.author }}</span>
+                        <span>{{ post.date | date_to_string }}</span>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <div class="article-abstract">
+                        {{ post.abstract }}
+                    </div>
+                    <a href="{{ post.url }}" rel="bookmark" title="{{ post.title }}">Continue Reading</a>
+                </div>
+            </div>
         </div>
         {% endfor %}
     </div>
+
 
     <div class="row">
         <div class="col-lg-3 adsense-triple-panel">
