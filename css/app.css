@@ -31,6 +31,12 @@
 
 
 
+
+.adsense-triple-panel {
+    max-height:300px;
+}
+
+
 /* Materialize Card */
 
 .card-panel, .card {
