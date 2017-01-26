@@ -22,6 +22,13 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: californiavol
 github_username:  cgb37
 
+github_url: http://github.com/cgb37
+twitter_url: http://twitter.com/californiavol
+google_plus_url: https://plus.google.com/u/0/+CharlesBrownRoberts
+linkedin_url: https://www.linkedin.com/pub/charles-brown-roberts/32/547/303
+website_url: http://charlesbrownroberts.com
+feed_url: https://cgb37.github.io/feed.xml
+
 # Build settings
 markdown: kramdown
 #theme: minima
