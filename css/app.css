@@ -22,6 +22,13 @@
     font-weight: bold;
 }
 
+.my-jumbotron a:link,
+.my-jumbotron a:visited,
+.my-jumbotron a:hover,
+.my-jumbotron a:active {
+    color: #fff;
+}
+
 @media only screen and (max-width: 421px) {
 
     .jumbotron-header {
