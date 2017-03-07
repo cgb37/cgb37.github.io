@@ -55,7 +55,11 @@
 
     .card {
         width: 510px;
-        min-height:420px;
+        min-height:380px;
+    }
+
+    .card h4 {
+        font-size: 16px;
     }
 
 }
