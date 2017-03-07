@@ -244,14 +244,6 @@
     display: block;
 }
 
-@media (min-width: 700px) {
-
-    .card {
-        width: 510px;
-        min-height:380px;
-    }
-
-}
 
 
 
