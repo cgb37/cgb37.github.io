@@ -22,7 +22,7 @@ jumbotron: blog/images/jumbotron-blog.jpg
 
     <div class="row">
         {% for post in site.categories.blog limit:12 %}
-        <div class="col-lg-4">
+        <div class="col-lg-6">
             <div class="card" id="{{ post.id }}">
                 <div class="card-image">
                     <a href="{{ post.url }}" rel="bookmark" title="{{ post.title }}">
