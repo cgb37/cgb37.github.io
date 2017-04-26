@@ -22,7 +22,7 @@ jumbotron: blog/images/jumbotron-blog.jpg
 
     <div class="row">
         {% for post in site.categories.blog limit:12 %}
-        <div class="col-lg-4">
+        <div class="col-lg-6">
             <div class="card" id="{{ post.id }}">
                 <div class="card-image">
                     <a href="{{ post.url }}" rel="bookmark" title="{{ post.title }}">
@@ -50,45 +50,5 @@ jumbotron: blog/images/jumbotron-blog.jpg
     </div>
 
 
-    <div class="row">
-        <div class="col-lg-3 adsense-triple-panel">
-            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!-- CGB37 Blog Post Index 1/3 Panel -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-1265222251100423"
-                 data-ad-slot="9446939991"
-                 data-ad-format="auto"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-
-        <div class="col-lg-3 adsense-triple-panel">
-            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!-- CGB37 Blog Post Index 2/3 Panel -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-1265222251100423"
-                 data-ad-slot="1923673192"
-                 data-ad-format="auto"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-
-        <div class="col-lg-3 adsense-triple-panel">
-            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!-- CGB37 Blog Post 3/3 Panel -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-1265222251100423"
-                 data-ad-slot="3400406395"
-                 data-ad-format="auto"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-    </div>
 
 </div>
