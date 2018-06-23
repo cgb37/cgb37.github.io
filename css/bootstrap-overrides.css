@@ -1,7 +1,8 @@
+/* Show it is fixed to the top */
 body {
-    padding-top: 50px;
+    min-height: 75rem;
+    padding-top: 4.5rem;
 }
-
 .my-jumbotron {
     padding-top:0;
     padding-bottom:0;
