@@ -22,6 +22,24 @@
 .bg-art-deco-gold { background-color: var(--bs-art-deco-gold) !important; }
 .text-art-deco-gold { color: var(--bs-art-deco-gold) !important; }
 
+/* Override Bootstrap's default fonts */
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Optional: Override other Bootstrap elements */
+.btn {
+    font-family: 'Roboto', sans-serif;
+}
+
+.navbar-nav .nav-link {
+    font-family: 'Roboto', sans-serif;
+}
+
 
 .my-jumbotron {
     padding-top:0;
@@ -147,7 +165,7 @@
 /* stylelint-disable @stylistic/selector-list-comma-newline-after */
 
 .blog-header-logo {
-    font-family: "Playfair Display", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+    font-family: "Roboto",  sans-serif;
     font-size: 2.25rem;
 }
 
@@ -156,7 +174,7 @@
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Playfair Display", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+    font-family: "Roboto",  sans-serif;
 }
 
 .flex-auto {
