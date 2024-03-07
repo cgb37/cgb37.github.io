@@ -14,28 +14,30 @@ youtube:
 
 <div class="container">
     <div class="row">
-
-        <div class="col-lg-3">
-            {% include profile.html %}
-            <div class="adsense-blog-post">
-                {% include adsense-blog-post.html %}
+        <div class="col-12">
+            <div class="jumbotron jumbotron-fluid" aria-label="Header Image">
+                {% if page.jumbotron %}
+                <img src="{{ site.github.url }}/{{ page.jumbotron }}" class="img-fluid" alt="Header Image">
+                {% else %}
+                <!-- Alternative content or fallback image here -->
+                {% endif %}
             </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="sidebar" aria-label="Sidebar">
 
-        <div class="col-lg-9">
-            <article id="{{ page.id }}">
-                <a href="{{ page.url }}" rel="bookmark" title="{{ page.title }}">
-                    <h1>{{ page.title }}</h1>
-                    <span>{{ page.date }}</span>
-                </a>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <article aria-label="Blog Post">
+                <h1>{{ page.title }}</h1>
+                <span>{{ page.date }}</span>
                 <div class="article-metadata">
                     <span>by {{ page.author }}</span>
                 </div>
-                <div class="article-body">
-
-                </div>
             </article>
-
         </div>
     </div>
-</div> 
+</div>

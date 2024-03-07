@@ -23,48 +23,52 @@ title: Charles Brown-Roberts Developer Projects
 
 <div class="container">
 
-        <div class="row">
-            <div class="col-12">
-                <h2>Meet Charles: The Architect Behind Code and Innovations</h2>
-                <p>In the heart of South Florida, amidst the vibrant tech scene and the serene beauty of its landscapes, works Charles, a software developer whose career has been as dynamic and impactful as the region he calls home. With a rich history stretching back to 2003, Charles's journey through the realms of higher education IT and Library IT has not only shaped his expertise but also the very infrastructure of the institutions he has served.</p>
+    <div class="row">
+        <div class="col-12">
+            <h2>Meet Charles: The Architect Behind Code and Innovations</h2>
+            <p>In the heart of South Florida, amidst the vibrant tech scene and the serene beauty of its landscapes, works Charles, a software developer whose career has been as dynamic and impactful as the region he calls home. With a rich history stretching back to 2003, Charles's journey through the realms of higher education IT and Library IT has not only shaped his expertise but also the very infrastructure of the institutions he has served.</p>
 
-                <p>Charles's blog serves as a digital chronicle of his adventures in software development, offering a treasure trove of projects, tutorials, and insights gleaned from over two decades of hands-on experience. With a profound knowledge of Azure Web Apps, Azure Pipelines, PHP, Python, React, Linux, Docker, and a staunch advocate for CI/CD practices, Charles's work is a testament to the power of technology to transform, enhance, and simplify our lives.</p>
+            <p>Charles's blog serves as a digital chronicle of his adventures in software development, offering a treasure trove of projects, tutorials, and insights gleaned from over two decades of hands-on experience. With a profound knowledge of Azure Web Apps, Azure Pipelines, PHP, Python, React, Linux, Docker, and a staunch advocate for CI/CD practices, Charles's work is a testament to the power of technology to transform, enhance, and simplify our lives.</p>
 
-                <p>This space is where Charles unpacks the layers of his extensive experience, sharing his victories, challenges, and the wisdom acquired through years of dedication to the craft of software development. Whether you're here to follow his projects, learn from his tutorials, or dive into the depths of software developer-related posts, you're in for a journey that transcends the boundaries of code.</p>
+            <p>This space is where Charles unpacks the layers of his extensive experience, sharing his victories, challenges, and the wisdom acquired through years of dedication to the craft of software development. Whether you're here to follow his projects, learn from his tutorials, or dive into the depths of software developer-related posts, you're in for a journey that transcends the boundaries of code.</p>
 
-                <p>Join Charles as he navigates the ever-evolving landscape of technology, armed with a passion for learning and a mission to empower others through knowledge and innovation. Welcome to a blog where each post is a building block in the vast digital ecosystem, crafted by a developer who lives and breathes code.</p>
-            </div>
+            <p>Join Charles as he navigates the ever-evolving landscape of technology, armed with a passion for learning and a mission to empower others through knowledge and innovation. Welcome to a blog where each post is a building block in the vast digital ecosystem, crafted by a developer who lives and breathes code.</p>
         </div>
+    </div>
 
-
-    <div class="col-lg-9">
-
-        <div class="row">
-
-            {% for post in site.posts limit:12 %}
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="{{site.baseurl}}/{{ post.card }}">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title">{{ post.title }}</span>
-                        <div class="card-metadata">
-                            <p>{{ post.meta }}</p>
-                            <span>by {{ post.author }}</span>
-                            <span>{{ post.date | date_to_string }}</span>
-                        </div>
-                    </div>
-                    <div class="card-action">
-                        <a href="{{ post.url }}" rel="bookmark" title="{{ post.title }}">Continue Reading</a>
-                    </div>
+    {% assign posts = site.posts  %}
+    {% for post in posts %}
+    {% assign rowIteration = forloop.index0 | modulo:2 %}
+    {% if rowIteration == 0 %}
+    <div class="row mb-2">
+        {% endif %}
+        <div class="col-md-6">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary-emphasis">{{ post.categories | join: ', ' }}</strong>
+                    <h3 class="mb-0">{{ post.title }}</h3>
+                    <div class="mb-1 text-body-secondary">{{ post.date | date: "%b %-d, %Y" }}</div>
+                    <p class="card-text mb-auto">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+                    <a href="{{ post.url }}" class="icon-link gap-1 icon-link-hover stretched-link">
+                        Continue reading <svg class="bi"><use xlink:href="#chevron-right"/></svg>
+                    </a>
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                    {% if post.image %}
+                    <img class="bd-placeholder-img" width="200" height="250" src="{{ post.image }}" alt="{{ post.title }}">
+                    {% else %}
+                    <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                    {% endif %}
                 </div>
             </div>
-            {% endfor %}
         </div>
-
-
+        {% if rowIteration == 1 or forloop.last %}
     </div>
+    {% endif %}
+    {% endfor %}
+
+
+
 
 
     <div class="col-lg-3">
