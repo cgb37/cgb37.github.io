@@ -9,8 +9,8 @@ tags:
 keywords:
 description:
 abstract:
-thumbnail: blog/images/
-jumbotron:
+thumb:
+jumbo:
 youtube:
 ---
 
@@ -18,8 +18,8 @@ youtube:
     <div class="row">
         <div class="col-12">
             <div class="jumbotron jumbotron-fluid" aria-label="Header Image">
-                {% if page.jumbotron %}
-                <img src="/{{site.posts_image_path}}/{{ page.jumbotron }}" class="img-fluid" alt="Header Image">
+                {% if page.jumbo %}
+                <img src="/{{site.posts_jumbo_image_path}}/{{ page.jumbo }}" class="img-fluid" alt="Header Image">
                 {% else %}
                 <!-- Alternative content or fallback image here -->
                 {% endif %}
