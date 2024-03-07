@@ -59,6 +59,13 @@
 }
 
 /**
+** Helpers
+ */
+.text-center {
+    text-align: center !important;
+}
+
+/**
 ** homepage styles
 */
 .bd-placeholder-img {
