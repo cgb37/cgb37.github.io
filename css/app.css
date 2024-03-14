@@ -184,17 +184,11 @@ h1, h2, h3, h4, h5, h6 {
     color: #727272;
 }
 
-.my-jumbotron {
-    padding-top:0;
-    padding-bottom:0;
-    background-color: transparent;
-    width:100%;
+img.my-jumbotron-img-wrapper {
+    margin: 20px 0;
 }
 
-.my-jumbotron img {
-    width: 100%;
-    max-height:500px;
-}
+
 
 .my-navbar-default {
     background-color: #1F3678;
