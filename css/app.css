@@ -56,6 +56,13 @@
 /**
 ** homepage styles
 */
+
+.hp-jumbotron img {
+    width: 100%;
+    max-height:500px;
+    margin: 20px 0;
+}
+
 .hp-feature-h3 {
     font-size: 1.225rem;
 }
@@ -184,7 +191,9 @@ h1, h2, h3, h4, h5, h6 {
     color: #727272;
 }
 
-img.my-jumbotron-img-wrapper {
+.blog-post-jumbotron img {
+    width: 100%;
+    max-height:500px;
     margin: 20px 0;
 }
 
