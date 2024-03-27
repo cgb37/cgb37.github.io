@@ -1,0 +1,70 @@
+---
+posttype: blog
+section:
+category: howto
+layout: blog/post
+title: Choosing the Right Conventional Commit Type for a Composer Library Switch
+author: Charles Brown-Roberts
+tags: git
+keywords:
+description:
+abstract:
+thumb: 2024-03-07-choosing-the-right-conventional-commit-type-for-a-composer-library-switch-thumb.webp
+jumbo: 2024-03-07-choosing-the-right-conventional-commit-type-for-a-composer-library-switch-jumbo.webp
+youtube:
+---
+
+
+<section>
+    <p>
+        In the dynamic world of software development, keeping dependencies up-to-date and secure is crucial. This blog post explores a specific scenario encountered by PHP developers: the need to switch Composer libraries due to various factors like security vulnerabilities, maintenance, or compliance with coding standards. Our case study focuses on determining the appropriate conventional commit label when transitioning from one LTI 1.3 PHP library to another, a decision that hinges on understanding the nuances of commit message categorization.
+    </p>
+</section>
+<section>
+    <h2>Problem Statement</h2>
+    <p>
+        The core issue stems from a stagnant Composer library, `1EdTech/lti-1-3-php-library`, which hadn't been updated since June 2020. This lack of updates led to unresolved security vulnerabilities, non-adherence to PSR-4 standards, and numerous open bugs. Developers found a solution in `packbackbooks/lti-1-3-php-library`, an actively maintained library addressing these shortcomings. However, this led to a dilemma: How should such a switch be reflected in commit messages? Is it a `feat`, a `fix`, or a `refactor`?
+    </p>
+</section>
+<section>
+    <h2>Approach and Thought Process</h2>
+    <p>
+        The decision process involves understanding the implications of each commit type:
+    </p>
+    <ul>
+        <li><strong>feat</strong> (feature) - introduces a new feature to the project.</li>
+        <li><strong>fix</strong> - fixes a bug in the project.</li>
+        <li><strong>refactor</strong> - modifies the code without changing its functionality, often for internal improvements.</li>
+    </ul>
+    <p>
+        Given the library switch aims to address security issues, comply with coding standards, and fix bugs, it could potentially fit multiple categories.
+    </p>
+</section>
+<section>
+    <h2>Correct Code Solution</h2>
+    <p>
+        The solution is nuanced, considering the library switch serves multiple purposes:
+    </p>
+    <ul>
+        <li>Improving security</li>
+        <li>Ensuring adherence to coding standards (PSR-4)</li>
+        <li>Addressing unresolved bugs</li>
+    </ul>
+    <p>
+        Therefore, categorizing this change as a <code>refactor</code> most accurately reflects the transition's nature. This type is chosen because it encompasses both improvements and fixes without introducing new features.
+    </p>
+    <code>refactor(dependencies): switch to packbackbooks/lti-1-3-php-library</code>
+</section>
+<section>
+    <h2>Solution Explanation</h2>
+    <p>
+        Labeling the change as a <code>refactor</code> highlights its role in enhancing the project's structure and maintainability, aligning with the goal of conventional commits to provide clear and meaningful commit messages. This classification aids in understanding the project history and the rationale behind significant decisions.
+    </p>
+</section>
+<section>
+    <h2>Conclusion</h2>
+    <p>
+        Deciding on the correct conventional commit label for a Composer library switch is more than a matter of semantics; it's about accurately reflecting the change's impact on the project. By considering the specific improvements and fixes the new library introduces, we can choose a label that best communicates the change's essence to other developers. This case study underscores the importance of thoughtful commit messages in collaborative software development.
+    </p>
+</section>
+

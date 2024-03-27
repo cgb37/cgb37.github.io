@@ -1,5 +1,7 @@
 ---
-category: blog
+posttype: blog
+section:
+category:
 layout: default
 title:
 author: Charles Brown-Roberts
@@ -7,24 +9,31 @@ tags:
 keywords:
 description:
 abstract:
-thumbnail: blog/images/
-jumbotron:
+thumb:
+jumbo:
 youtube:
 ---
 
-<div class="jumbotron my-jumbotron">
-    <img src="{{ site.baseurl }}/{{ page.jumbotron }}">
-</div>
-
 <div class="container">
     <div class="row">
-        <div class="col-lg-3">
+        <div class="col-12">
+            <div class="jumbotron jumbotron-fluid blog-post-jumbotron" aria-label="Header Image">
+                {% if page.jumbo %}
+                <img src="/{{site.posts_jumbo_image_path}}/{{ page.jumbo }}" class="img-fluid my-jumbotron-img-wrapper" alt="Header Image">
+                {% else %}
+                <!-- Alternative content or fallback image here -->
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
             <div class="adsense-blog-post-sidebar">
                 {% include adsense-blog-post.html %}
             </div>
         </div>
 
-        <div class="col-lg-9">
+        <div class="col-md-10">
             <article id="{{ page.id }}">
                 <h1><a href="{{ page.url }}" rel="bookmark" title="{{ page.title }}">{{ page.title }}</a></h1>
                 <div class="article-metadata">
