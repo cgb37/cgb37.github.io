@@ -62,3 +62,4 @@ exclude:
 - README.md
 - script
 - vendor
+- _prompts
