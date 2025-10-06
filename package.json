@@ -1,0 +1,9 @@
+{
+  "name": "cgb37.github.io",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "bundle exec jekyll build",
+    "serve": "bundle exec jekyll serve --livereload --incremental",
+    "stop": "pkill -f jekyll"
+  }
+}
