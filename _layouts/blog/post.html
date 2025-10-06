@@ -12,6 +12,15 @@ abstract:
 thumb:
 jumbo:
 youtube:
+repo:
+gist:
+programming_languages: []
+difficulty_level: ""
+learning_objectives: []
+technologies: 
+  - name: ""
+    category: ""
+    url: ""
 ---
 
 <div class="container">
@@ -51,22 +60,4 @@ youtube:
     </div>
 </div>
 
-<script type="application/ld+json">
-{ "@context": "http://schema.org",
- "@type": "Article",
- "headline": "{{ page.title }}",
- "alternativeHeadline": "",
- "image": "https://cgb37.github.io/{{ page.thumbnail }}",
- "award": "",
- "editor": "{{ page.author }}",
- "genre": "{{ page.category }}",
- "keywords": "{{ page.keywords }}",
- "wordcount": "",
- "publisher": "Charles Brown-Roberts",
- "url": "https://cgb37.github.io{{ page.url }}",
- "datePublished": "{{ page.date }}",
- "dateCreated": "{{ page.date }}",
- "dateModified": "{{ page.date }}",
- "description": "{{ page.abstract }}"
- }
-</script>
+{% include structured-data-blog-post.html %}
