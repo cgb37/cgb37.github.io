@@ -1,0 +1,148 @@
+---
+posttype: blog
+section:
+category: howto
+layout: blog/post
+title: "Dockerizing Your Jekyll Site: A Senior Developer's Guide"
+author: Charles Brown-Roberts
+tags: Docker, Jekyll, Docker Compose, Static Site, Development Environment
+keywords: [Docker Jekyll, Jekyll Docker Compose, Static Site Docker, Jekyll Development Environment, Docker for Static Sites]
+description: "A comprehensive guide to containerizing your Jekyll site using Docker Compose, making your development environment consistent and reproducible across any machine."
+abstract: "Learn how to set up a Docker environment for your Jekyll site, eliminating the 'it works on my machine' syndrome and creating a consistent development experience. This guide covers creating a Docker Compose configuration, optimizing for development, and managing your Jekyll site with containers."
+thumb: 2025-04-09-dockerizing-your-jekyll-site-thumb.webp
+jumbo: 2025-04-09-dockerizing-your-jekyll-site-jumbo.webp
+youtube:
+repo:
+gist:
+---
+
+<section>
+    <h2>Introduction</h2>
+    <p>As a senior developer who has seen the evolution of development environments over the years, I can't stress enough the importance of containerization. Today, we're going to tackle a common challenge: setting up a consistent Jekyll development environment using Docker Compose. This approach eliminates the classic "it works on my machine" problem and ensures that anyone working on your Jekyll site can get up and running with minimal friction.</p>
+</section>
+
+<section>
+    <h2>Problem Statement</h2>
+    <p>Managing Ruby versions, gem dependencies, and Jekyll installations across different development machines can be a real headache. Whether you're working in a team or maintaining multiple Jekyll sites, ensuring consistency in your development environment is crucial. Docker Compose offers an elegant solution to this problem by containerizing your Jekyll site and its dependencies.</p>
+</section>
+
+<section>
+    <h2>Solution Overview</h2>
+    <p>We'll create a Docker Compose configuration that:</p>
+    <ul>
+        <li>Uses official Ruby Alpine image for a lightweight container</li>
+        <li>Mounts your Jekyll site source code for live development</li>
+        <li>Handles Bundler dependencies efficiently</li>
+        <li>Enables live reload for development</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Implementation</h2>
+    <p>Let's start by creating our Docker Compose configuration. Create a new file called <code>docker-compose.yml</code> in your Jekyll project's root directory:</p>
+
+    <pre><code class="language-yaml">version: '3'
+services:
+  jekyll:
+    image: ruby:3.1-alpine
+    command: >
+      sh -c "
+        apk add --no-cache build-base &&
+        bundle install &&
+        bundle exec jekyll serve --host 0.0.0.0 --livereload"
+    environment:
+      - JEKYLL_ENV=development
+    ports:
+      - "4000:4000"
+      - "35729:35729"
+    volumes:
+      - .:/srv/jekyll
+      - ./vendor/bundle:/usr/local/bundle
+    working_dir: /srv/jekyll</code></pre>
+
+    <h3>Configuration Breakdown</h3>
+    <p>Let's examine each component of our Docker Compose configuration:</p>
+    
+    <ul>
+        <li><strong>Base Image</strong>: We're using <code>ruby:3.1-alpine</code> for its small footprint while still providing everything we need.</li>
+        <li><strong>Command</strong>: We install build dependencies, run bundle install, and start Jekyll with live reload enabled.</li>
+        <li><strong>Ports</strong>: 
+            <ul>
+                <li>4000 - Jekyll's default server port</li>
+                <li>35729 - Live reload functionality</li>
+            </ul>
+        </li>
+        <li><strong>Volumes</strong>:
+            <ul>
+                <li>Project files mounted to <code>/srv/jekyll</code></li>
+                <li>Bundler dependencies cached in <code>vendor/bundle</code></li>
+            </ul>
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h2>Usage and Best Practices</h2>
+    <p>To start your Jekyll site using Docker Compose, simply run:</p>
+    <pre><code>docker-compose up</code></pre>
+
+    <p>Here are some pro tips for working with your Dockerized Jekyll site:</p>
+    
+    <ul>
+        <li><strong>Development Workflow</strong>: The live reload feature will automatically refresh your browser when you make changes to your source files.</li>
+        <li><strong>Dependency Management</strong>: When you update your Gemfile, Docker will automatically handle the bundle install on the next startup.</li>
+        <li><strong>Cleaning Up</strong>: Use <code>docker-compose down</code> to stop and remove containers when you're done.</li>
+        <li><strong>Performance Optimization</strong>: The cached bundle volume significantly improves startup times on subsequent runs.</li>
+    </ul>
+
+    <p>For production builds, you might want to create a separate production configuration:</p>
+    <pre><code>version: '3'
+services:
+  jekyll:
+    image: ruby:3.1-alpine
+    command: >
+      sh -c "
+        apk add --no-cache build-base &&
+        bundle install &&
+        JEKYLL_ENV=production bundle exec jekyll build"
+    volumes:
+      - .:/srv/jekyll
+      - ./vendor/bundle:/usr/local/bundle
+    working_dir: /srv/jekyll</code></pre>
+</section>
+
+<section>
+    <h2>Troubleshooting Common Issues</h2>
+    <p>Here are some common issues you might encounter and their solutions:</p>
+    
+    <ul>
+        <li><strong>Permission Issues</strong>: If you encounter permission problems with the bundle volume, you may need to adjust the ownership:
+            <pre><code>chown -R 1000:1000 vendor/bundle</code></pre>
+        </li>
+        <li><strong>Live Reload Not Working</strong>: Ensure your firewall allows connections on port 35729</li>
+        <li><strong>Slow Performance</strong>: On Windows or macOS, you might experience slower performance due to volume mounting. Consider using Docker's delegated volume mounting option:
+            <pre><code>volumes:
+  - .:/srv/jekyll:delegated</code></pre>
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h2>Conclusion</h2>
+    <p>Dockerizing your Jekyll site might seem like overkill at first, but the benefits become apparent as your project grows or when working in a team. With this setup, you can ensure consistent behavior across different development environments, simplify onboarding for new team members, and maintain a clean separation between your development environment and host system.</p>
+
+    <p>Remember, the goal of containerization isn't just to follow the latest trend - it's about creating reproducible environments that make development more efficient and reliable. As you continue to work with this setup, you'll likely find ways to customize it further to match your specific needs.</p>
+</section>
+
+<section>
+    <h2>Next Steps</h2>
+    <p>Consider these advanced topics for further improvement:</p>
+    <ul>
+        <li>Setting up multi-stage builds for production deployments</li>
+        <li>Implementing CI/CD pipelines with your Docker setup</li>
+        <li>Optimizing build times with layer caching</li>
+        <li>Adding additional services like search functionality</li>
+    </ul>
+</section>
+
+Happy containerizing, and remember: if it works in your container, it'll work in everyone's container!

@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  site:
+    platform: linux/amd64
+    image: jekyll/jekyll:4.2.2
+    command: jekyll serve --watch --force-polling --livereload
+    ports:
+      - "4000:4000"
+      - "35729:35729"
+    volumes:
+      - .:/srv/jekyll
+      - ./vendor/bundle:/usr/local/bundle
+    environment:
+      - JEKYLL_ENV=development

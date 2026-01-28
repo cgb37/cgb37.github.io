@@ -8,3 +8,14 @@ _site/
 vendor/
 
 _prompts
+
+### Docker-related files
+.git
+.gitignore
+.sass-cache
+_site
+vendor
+Dockerfile
+docker-compose.yml
+node_modules
+.DS_Store
