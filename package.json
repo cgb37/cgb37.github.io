@@ -1,9 +1,25 @@
 {
-  "name": "cgb37.github.io",
+  "name": "cgb37-github-io",
   "version": "1.0.0",
+  "description": "Personal blog and portfolio site built with Jekyll",
   "scripts": {
-    "build": "bundle exec jekyll build",
-    "serve": "bundle exec jekyll serve --livereload --incremental",
-    "stop": "pkill -f jekyll"
-  }
+    "start": "docker-compose up",
+    "start:detach": "docker-compose up -d",
+    "stop": "docker-compose down",
+    "restart": "docker-compose restart",
+    "clean": "docker-compose down && rm -rf _site .jekyll-cache",
+    "rebuild": "npm run clean && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cgb37/cgb37.github.io.git"
+  },
+  "keywords": [
+    "jekyll",
+    "blog",
+    "portfolio",
+    "docker"
+  ],
+  "author": "Charles Brown-Roberts",
+  "license": "MIT"
 }
