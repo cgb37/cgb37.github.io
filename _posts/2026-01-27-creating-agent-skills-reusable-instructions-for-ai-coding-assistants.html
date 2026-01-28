@@ -1,0 +1,439 @@
+---
+posttype: blog
+category: howto
+layout: blog/post
+title: "Creating Agent Skills: Reusable Instructions for AI Coding Assistants"
+author: Charles Brown-Roberts
+tags: [ai, copilot, agent-skills, automation, developer-tools, vscode]
+keywords: [agent skills, AI coding assistant, GitHub Copilot, SKILL.md, reusable instructions, AI automation, developer productivity]
+description: "Learn how to create Agent Skills—reusable instruction modules that teach AI coding assistants domain-specific knowledge and workflows using the standardized SKILL.md format."
+abstract: "Agent Skills provide a standardized way to package domain-specific knowledge for AI coding assistants like GitHub Copilot. This guide covers the SKILL.md format specification, directory structure, best practices for progressive disclosure, and validation techniques to create maintainable, efficient skills that enhance your AI-assisted development workflow."
+thumb: 2026-01-27-creating-agent-skills-reusable-instructions-for-ai-coding-assistants-thumb.webp
+jumbo: 2026-01-27-creating-agent-skills-reusable-instructions-for-ai-coding-assistants-jumbo.webp
+repo:
+gist:
+programming_languages: [YAML, Markdown]
+difficulty_level: "beginner"
+learning_objectives:
+  - "Understand the Agent Skills format and its purpose"
+  - "Create a valid SKILL.md file with proper frontmatter"
+  - "Structure skill directories for progressive disclosure"
+  - "Write effective skill descriptions that trigger appropriately"
+key_takeaways:
+  - "Agent Skills use a simple SKILL.md file with YAML frontmatter to define reusable AI instructions"
+  - "Progressive disclosure keeps context efficient—metadata loads at startup, full instructions on activation"
+  - "Good descriptions explain both what the skill does AND when to use it"
+tested_on:
+  - "VS Code with GitHub Copilot"
+  - "Any AI coding assistant supporting Agent Skills"
+technologies:
+  - name: "Agent Skills"
+    category: "AI Development"
+    url: "https://agentskills.io"
+  - name: "GitHub Copilot"
+    category: "AI Coding Assistant"
+    url: "https://github.com/features/copilot"
+  - name: "YAML"
+    category: "Data Format"
+    url: "https://yaml.org"
+---
+
+<section>
+  <h2>Introduction</h2>
+  <p>If you've ever found yourself repeatedly explaining the same project conventions, coding patterns, or workflows to your AI coding assistant, you've encountered the limitation of context-less AI interactions. Each conversation starts fresh, and all that hard-won domain knowledge evaporates.</p>
+  
+  <p>Agent Skills solve this problem by providing a standardized format for packaging reusable instructions that AI assistants can load on demand. Think of them as "plugins" for your AI—domain-specific knowledge modules that activate when relevant and stay dormant when not needed.</p>
+  
+  <p>In this guide, you'll learn how to create your own Agent Skills using the SKILL.md format specification. Whether you want to teach your AI assistant how to write blog posts in your project's style, handle specific deployment workflows, or follow your team's code review conventions, Agent Skills provide the structure to make that knowledge persistent and shareable.</p>
+</section>
+
+<section>
+  <h2>Quick Start</h2>
+  <p>If you just want to create a working skill immediately:</p>
+  <pre><code class="language-bash">
+# Create skill directory structure
+mkdir -p .github/skills/my-skill
+
+# Create the SKILL.md file
+cat &gt; .github/skills/my-skill/SKILL.md &lt;&lt;'EOF'
+---
+name: my-skill
+description: Describe what this skill does and when to use it. Use when the user asks about X or wants to do Y.
+---
+
+# My Skill
+
+Instructions for the AI assistant go here in Markdown format.
+
+## When to Use
+- Specific trigger conditions
+- Types of user requests this handles
+
+## Workflow
+1. First step
+2. Second step
+3. Third step
+EOF
+  </code></pre>
+  <p>That's it! The AI assistant will now load these instructions when relevant to the user's request.</p>
+</section>
+
+<section>
+  <h2>Prerequisites</h2>
+  <ul>
+    <li>A project repository where you want to add skills</li>
+    <li>Basic familiarity with YAML and Markdown syntax</li>
+    <li>An AI coding assistant that supports Agent Skills (e.g., GitHub Copilot, Claude Code)</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Problem Statement</h2>
+  <p>AI coding assistants are powerful but stateless. Every conversation starts without knowledge of your specific project conventions, workflows, or domain expertise. This creates several challenges:</p>
+  
+  <ul>
+    <li><strong>Repetitive explanations</strong>: You explain the same patterns and conventions repeatedly</li>
+    <li><strong>Inconsistent outputs</strong>: Without context, the AI may produce code that doesn't match your project style</li>
+    <li><strong>Lost institutional knowledge</strong>: Complex workflows that team members know can't be easily transferred to AI</li>
+    <li><strong>Context overload</strong>: Loading all instructions at once wastes tokens and slows responses</li>
+  </ul>
+  
+  <p>Agent Skills address these challenges by providing a structured way to define instructions that load only when relevant, keeping interactions efficient while ensuring the AI has the context it needs.</p>
+</section>
+
+<section>
+  <h2>Directory Structure</h2>
+  <p>An Agent Skill lives in its own directory with a specific structure:</p>
+  
+  <pre><code class="language-text">
+skill-name/
+├── SKILL.md          # Required: Main instructions
+├── scripts/          # Optional: Executable code
+├── references/       # Optional: Additional documentation
+└── assets/           # Optional: Templates, images, data files
+  </code></pre>
+  
+  <p>The <code>SKILL.md</code> file is the only required component. The optional directories provide a place for supporting materials that the skill instructions can reference.</p>
+  
+  <h3>Directory Placement</h3>
+  <p>Skills are typically placed in one of these locations:</p>
+  <ul>
+    <li><code>.github/skills/</code> — Recommended for GitHub Copilot and VS Code</li>
+    <li><code>.claude/skills/</code> — Claude Code (also recognized by GitHub Copilot)</li>
+  </ul>
+  <p>User-wide skill locations vary by tool; consult your AI assistant's documentation for details.</p>
+</section>
+
+<section>
+  <h2>SKILL.md Format</h2>
+  <p>The SKILL.md file combines YAML frontmatter with Markdown instructions. Here's the complete format:</p>
+  
+  <h3>Required Frontmatter</h3>
+  <pre><code class="language-yaml">
+---
+name: skill-name
+description: What this skill does and when to use it.
+---
+  </code></pre>
+  
+  <p>Both <code>name</code> and <code>description</code> are required. The name must match the parent directory name.</p>
+  
+  <h3>Optional Frontmatter Fields</h3>
+  <pre><code class="language-yaml">
+---
+name: pdf-processing
+description: Extract text and tables from PDF files, fill forms, merge documents. Use when working with PDF documents.
+license: Apache-2.0
+compatibility: Requires git, docker, jq
+allowed-tools: Bash(git:*) Bash(jq:*) Read
+metadata:
+  author: example-org
+  version: "1.0"
+---
+  </code></pre>
+  
+  <h3>Field Reference</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Required</th>
+        <th>Constraints</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>name</code></td>
+        <td>Yes</td>
+        <td>1-64 chars, lowercase + hyphens only, must match directory name</td>
+      </tr>
+      <tr>
+        <td><code>description</code></td>
+        <td>Yes</td>
+        <td>1-1024 chars, explain what AND when</td>
+      </tr>
+      <tr>
+        <td><code>license</code></td>
+        <td>No</td>
+        <td>License name or reference to bundled LICENSE file</td>
+      </tr>
+      <tr>
+        <td><code>compatibility</code></td>
+        <td>No</td>
+        <td>1-500 chars, environment requirements</td>
+      </tr>
+      <tr>
+        <td><code>metadata</code></td>
+        <td>No</td>
+        <td>Key-value map for additional properties</td>
+      </tr>
+      <tr>
+        <td><code>allowed-tools</code></td>
+        <td>No</td>
+        <td>Space-delimited list of pre-approved tools (experimental)</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Name Validation Rules</h2>
+  <p>The <code>name</code> field has strict validation rules to ensure consistency across systems:</p>
+  
+  <ul>
+    <li>Lowercase alphanumeric and hyphens only (<code>a-z</code>, <code>0-9</code>, <code>-</code>)</li>
+    <li>Cannot start or end with a hyphen</li>
+    <li>No consecutive hyphens (<code>--</code>)</li>
+    <li>Must match the parent directory name exactly</li>
+  </ul>
+  
+  <h3>Examples</h3>
+  <pre><code class="language-text">
+# Valid names
+pdf-processing
+data-analysis
+code-review
+my-skill-v2
+
+# Invalid names
+PDF-Processing    # uppercase letters
+-pdf              # starts with hyphen
+pdf--processing   # consecutive hyphens
+pdf_processing    # underscores not allowed
+  </code></pre>
+</section>
+
+<section>
+  <h2>Writing Effective Descriptions</h2>
+  <p>The description is critical—it determines when the AI activates your skill. A good description explains both <strong>what</strong> the skill does AND <strong>when</strong> to use it.</p>
+  
+  <h3>Good Description</h3>
+  <pre><code class="language-yaml">
+description: Extracts text and tables from PDF files, fills PDF forms, 
+  and merges multiple PDFs. Use when working with PDF documents or when 
+  the user mentions PDFs, forms, or document extraction.
+  </code></pre>
+  
+  <h3>Poor Description</h3>
+  <pre><code class="language-yaml">
+description: Helps with PDFs.
+  </code></pre>
+  
+  <p>The first description gives the AI clear signals about when to activate: mentions of PDFs, forms, document extraction, merging, or text extraction. The second description is too vague to be useful.</p>
+  
+  <h3>Description Patterns</h3>
+  <p>Effective descriptions often follow this pattern:</p>
+  <pre><code class="language-text">
+[Action verbs describing capabilities]. Use when [trigger conditions].
+  </code></pre>
+  
+  <p>Examples:</p>
+  <ul>
+    <li>"Creates Jekyll blog posts from source materials. Use when asked to write a blog post or document a project."</li>
+    <li>"Deploys applications to Kubernetes clusters. Use when the user mentions deployment, k8s, or cluster operations."</li>
+    <li>"Generates API documentation from TypeScript interfaces. Use when documenting APIs or generating OpenAPI specs."</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Progressive Disclosure</h2>
+  <p>Agent Skills use progressive disclosure to optimize context efficiency. Not all content loads at once—the system loads only what's needed:</p>
+  
+  <ol>
+    <li><strong>Metadata</strong> (~100 tokens): <code>name</code> + <code>description</code> loaded at startup for all skills</li>
+    <li><strong>Instructions</strong> (&lt;5000 tokens): Full <code>SKILL.md</code> loaded only when skill activates</li>
+    <li><strong>Resources</strong> (as needed): Files in <code>references/</code> or <code>assets/</code> loaded only when explicitly referenced</li>
+  </ol>
+  
+  <p>This architecture means you should:</p>
+  <ul>
+    <li><strong>Keep SKILL.md under 500 lines</strong> — Move detailed reference material to <code>references/</code></li>
+    <li><strong>Put frequently-needed instructions in SKILL.md</strong> — This loads automatically on activation</li>
+    <li><strong>Use references for edge cases and deep details</strong> — Keeps main instructions focused</li>
+  </ul>
+</section>
+
+<section>
+  <h2>File References</h2>
+  <p>When your skill needs to reference supporting files, use relative paths from the skill root:</p>
+  
+  <pre><code class="language-markdown">
+See [the reference guide](references/REFERENCE.md) for API details.
+
+Use the template at `assets/TEMPLATE.html` as a starting point.
+
+Run the script: `scripts/process.py`
+  </code></pre>
+  
+  <p>Best practices for file references:</p>
+  <ul>
+    <li>Keep references one level deep—avoid nested reference chains</li>
+    <li>Use descriptive filenames that indicate content</li>
+    <li>Include a brief description of what each referenced file contains</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Complete Example</h2>
+  <p>Here's a complete example of a skill that generates code review comments:</p>
+  
+  <pre><code class="language-yaml">
+---
+name: code-review
+description: Generates constructive code review comments following team 
+  conventions. Use when reviewing pull requests or when the user asks 
+  for code review, feedback on code, or PR comments.
+license: MIT
+compatibility: Works with any programming language
+metadata:
+  author: your-team
+  version: "1.2"
+---
+  </code></pre>
+  
+  <pre><code class="language-markdown">
+# Code Review Skill
+
+Generate helpful, constructive code review comments.
+
+## Review Principles
+
+1. **Be specific**: Point to exact lines and explain the issue
+2. **Be constructive**: Suggest improvements, don't just criticize
+3. **Be kind**: Assume positive intent from the author
+4. **Be selective**: Focus on important issues, not nitpicks
+
+## Comment Format
+
+Use this format for review comments:
+
+```
+**[Category]** Brief summary
+
+Detailed explanation of the issue or suggestion.
+
+**Suggested change:**
+\`\`\`language
+improved code here
+\`\`\`
+```
+
+## Categories
+
+- **Bug**: Logic error or incorrect behavior
+- **Security**: Potential vulnerability
+- **Performance**: Inefficient code
+- **Style**: Formatting or naming conventions
+- **Clarity**: Hard to understand code
+- **Suggestion**: Optional improvement
+
+## Workflow
+
+1. Read the entire diff to understand context
+2. Identify the most important issues (max 5-7 comments)
+3. Write comments using the format above
+4. Review your comments for tone before posting
+  </code></pre>
+</section>
+
+<section>
+  <h2>Validation</h2>
+  <p>You can validate your skill using the official reference library:</p>
+  
+  <pre><code class="language-bash">
+# Install the validation tool
+pip install skills-ref
+
+# Validate your skill
+skills-ref validate ./my-skill
+
+# Read skill properties (outputs JSON)
+skills-ref read-properties ./my-skill
+
+# Generate &lt;available_skills&gt; XML for agent prompts
+skills-ref to-prompt ./my-skill
+  </code></pre>
+  
+  <p>Common validation errors:</p>
+  <ul>
+    <li><strong>Name mismatch</strong>: The <code>name</code> field doesn't match the directory name</li>
+    <li><strong>Missing description</strong>: The required <code>description</code> field is empty</li>
+    <li><strong>Invalid characters</strong>: Name contains uppercase letters, underscores, or other invalid characters</li>
+    <li><strong>File too large</strong>: SKILL.md exceeds recommended size limits</li>
+  </ul>
+  
+  <p><strong>Note:</strong> The <code>skills-ref</code> library is intended for demonstration and validation purposes. For production workflows, consider integrating validation into your CI pipeline.</p>
+</section>
+
+<section>
+  <h2>Best Practices</h2>
+  
+  <h3>Do</h3>
+  <ul>
+    <li>Write descriptions that explain both capability and trigger conditions</li>
+    <li>Keep SKILL.md focused and under 500 lines</li>
+    <li>Use clear section headers for easy scanning</li>
+    <li>Include concrete examples of inputs and outputs</li>
+    <li>Test your skill with various prompts to ensure it activates correctly</li>
+    <li>Version your skills alongside your code in source control</li>
+  </ul>
+  
+  <h3>Don't</h3>
+  <ul>
+    <li>Pack everything into SKILL.md—use references for deep details</li>
+    <li>Write vague descriptions like "helps with stuff"</li>
+    <li>Create skills that are too narrow (single use) or too broad (always activates)</li>
+    <li>Include sensitive information like API keys or credentials</li>
+    <li>Create nested chains of references that require multiple file reads</li>
+    <li>Install skills from untrusted sources without auditing them first</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Security Considerations</h2>
+  <p>Skills provide AI assistants with new capabilities through instructions and code. While this makes them powerful, it also means that malicious skills could introduce vulnerabilities or direct the AI to take unintended actions. Keep these guidelines in mind:</p>
+  
+  <ul>
+    <li><strong>Install skills only from trusted sources</strong> — Verify the author and review the contents before use</li>
+    <li><strong>Audit skills before deployment</strong> — Read the SKILL.md and any bundled scripts to understand what they do</li>
+    <li><strong>Pay attention to dependencies</strong> — Check what external tools or packages the skill requires</li>
+    <li><strong>Test in isolation first</strong> — Try new skills in a non-production environment before relying on them</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Conclusion</h2>
+  <p>Agent Skills provide a powerful way to extend your AI coding assistant with domain-specific knowledge. By following the SKILL.md format specification, you can create reusable instruction modules that activate when relevant and stay efficient when dormant.</p>
+  
+  <p>The key principles to remember:</p>
+  <ul>
+    <li><strong>Structure matters</strong>: Use the standardized directory layout with SKILL.md as the required entry point</li>
+    <li><strong>Descriptions are critical</strong>: Write descriptions that clearly signal when the skill should activate</li>
+    <li><strong>Progressive disclosure</strong>: Keep main instructions focused, use references for details</li>
+    <li><strong>Validate early</strong>: Test your skills with various prompts to ensure they work as expected</li>
+  </ul>
+  
+  <p>Start with a simple skill for a workflow you repeat often, and expand from there. Once you experience the productivity gains of having your AI assistant understand your project's conventions, you'll find more opportunities to create skills that capture your team's institutional knowledge.</p>
+  
+  <p>For the full specification and additional examples, visit the <a href="https://agentskills.io">Agent Skills documentation</a>.</p>
+</section>
